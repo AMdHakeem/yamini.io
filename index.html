@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║   WELCOME! HOW TO USE THIS FILE  (read this first, 2 minutes)       ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+
+  This is your whole website in ONE file. You do not need any other tools:
+  just a text editor (Notepad, VS Code, TextEdit...) and a web browser.
+
+  THE 3-STEP WORKFLOW
+    1. Open this file (index.html) in a text editor.
+    2. Press Ctrl+F (Windows) or Cmd+F (Mac) and search for:   EDIT-ME
+       Every spot you can change is marked with the words "EDIT-ME" in a
+       comment like this one. Follow the plain-English instructions there.
+    3. Save the file, then double-click index.html to open it in your
+       browser and see your changes. (Refresh the page after each save.)
+
+  WHAT THE SYMBOLS MEAN
+    A COMMENT is a note that starts with  less-than, exclamation mark, dash, dash
+       and ends with  dash, dash, greater-than  (just like this big note).
+       Comments are notes for you. Visitors never see them. Don't delete those
+       start and end symbols, or the note will show up on the page.
+
+  THE EDIT-ME CHECKLIST (search for each one)
+    EDIT-ME 1  Your profile photo
+    EDIT-ME 2  Project image
+    EDIT-ME 3  Project title
+    EDIT-ME 4  Project description
+    EDIT-ME 5  Project link (where the "View Project" button goes)
+    EDIT-ME 6  How to ADD MORE PROJECTS (copy and paste a card)
+    EDIT-ME 7  Social media links (LinkedIn, email, GitHub)
+    EDIT-ME 8  Optional: change the accent colour
+
+  THE IMAGES FOLDER
+    Put your pictures in the folder called  images/  next to this file.
+    Example:  images/profile.jpg   and   images/project-1.jpg
+    The file names you use in the folder must match the names you type here.
+
+  PUTTING IT ONLINE (GitHub Pages)
+    Upload index.html and the images/ folder to a GitHub repository, then go to
+    Settings > Pages and choose the main branch. GitHub gives you a free link.
+
+  Design note: the layout is inspired by the "Editorial" style from HTML5 UP.
+-->
+
+<title>Yamini | Aspiring Data Analyst</title>
+<meta name="description" content="Portfolio of Yamini, an aspiring Data Analyst with experience in customer support operations, CRM, SLA tracking and CSI reporting. Skilled in Excel, SQL and Power BI.">
+
+<!-- Fonts and icons are loaded from the internet (CDN). This is why the page needs an internet connection to look perfect. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  /* ==================================================================
+     STYLES (how the page looks)
+     You normally do NOT need to touch anything in this <style> block.
+     The only thing worth changing is the accent colour just below.
+     ================================================================== */
+
+  :root {
+    /* ---- EDIT-ME 8: ACCENT COLOUR ---------------------------------
+       This one colour is used for buttons, links, highlights and icons.
+       To change it, replace #5e81ac with any hex colour code you like
+       (search "colour picker" online to find codes such as #2a9d8f).
+       --accent-dark is the slightly darker shade used when you hover
+       over things. Change it too if you change the main colour. */
+    --accent: #5e81ac;
+    --accent-dark: #4c6a92;
+    --accent-soft: #eef2f8;   /* very light tint of the accent, used for backgrounds */
+
+    /* Other colours (safe to leave as they are) */
+    --text: #3d4449;
+    --muted: #7f888f;
+    --line: #e7e9eb;
+    --bg: #ffffff;
+
+    --sidebar-w: 19rem;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent-dark); text-decoration: none; }
+  a:hover { color: var(--accent); }
+  img { max-width: 100%; display: block; }
+
+  h1, h2, h3 {
+    font-family: "Source Serif 4", Georgia, serif;
+    color: var(--text);
+    line-height: 1.25;
+    margin: 0 0 .5em;
+  }
+
+  /* Keyboard users: show a clear outline when tabbing */
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------------- SIDEBAR (fixed on the left) ---------------- */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: #fff;
+    border-right: 1px solid var(--line);
+    padding: 3rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 30;
+    transition: transform .3s ease;
+  }
+  .sidebar .brand-name {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .sidebar .brand-title {
+    margin: .5rem 0 0;
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: .8rem;
+  }
+  .sidebar nav { margin-top: 3rem; }
+  .sidebar nav ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .sidebar nav li { border-bottom: 1px solid var(--line); }
+  .sidebar nav a {
+    display: block;
+    padding: .95rem 0;
+    color: var(--text);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .85rem;
+    transition: color .2s, padding-left .2s;
+  }
+  .sidebar nav a:hover, .sidebar nav a.active { color: var(--accent); padding-left: .5rem; }
+
+  .sidebar .sidebar-social { margin-top: auto; }  /* pushes icons to the bottom */
+  .sidebar .sidebar-social p {
+    margin: 0 0 .7rem;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .close-menu {
+    display: none;
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: 0; font-size: 1.4rem; color: var(--muted); cursor: pointer;
+  }
+
+  /* ---------------- SOCIAL ICONS (used in sidebar + header) ---------------- */
+  .icons { list-style: none; margin: 0; padding: 0; display: flex; gap: .6rem; }
+  .icons a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.4rem; height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-size: 1.05rem;
+    transition: all .2s;
+  }
+  .icons a:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); }
+
+  /* ---------------- MAIN AREA ---------------- */
+  .main { margin-left: var(--sidebar-w); }
+  .inner { max-width: 62rem; margin: 0 auto; padding: 0 3rem; }
+
+  /* ---------------- TOP HEADER BAR ---------------- */
+  .top-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 2.2rem 0 1.4rem;
+    border-bottom: 3px solid var(--text);
+  }
+  .logo {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--text);
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .logo .mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.2rem; height: 2.2rem; border-radius: 50%;
+    background: var(--accent); color: #fff; font-size: .95rem;
+  }
+  .logo:hover { color: var(--text); }
+  .header-right { display: flex; align-items: center; gap: 1rem; }
+  .menu-toggle {
+    display: none;
+    background: none; border: 1px solid var(--line); border-radius: 6px;
+    width: 2.6rem; height: 2.6rem; font-size: 1.1rem; color: var(--text); cursor: pointer;
+  }
+
+  /* ---------------- SECTIONS ---------------- */
+  section { padding: 4rem 0 1rem; scroll-margin-top: 0; }
+  .section-title {
+    font-size: 1.9rem; font-weight: 700;
+    margin-bottom: 1.6rem;
+  }
+  .section-title::after {
+    content: ""; display: block; width: 3rem; height: 4px; background: var(--accent); margin-top: .6rem; border-radius: 2px;
+  }
+
+  /* ---------------- BANNER ---------------- */
+  .banner {
+    display: grid;
+    grid-template-columns: 1fr 17rem;
+    gap: 3.5rem;
+    align-items: center;
+    padding-top: 3.5rem;
+  }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .16em; font-size: .8rem; font-weight: 700;
+    color: var(--accent-dark); margin: 0 0 .8rem;
+  }
+  .banner h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+  .banner p.bio { font-size: 1.15rem; color: #4b5359; margin: 0 0 1.4rem; }
+
+  .chips { list-style: none; padding: 0; margin: 0 0 1.8rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chips li {
+    background: var(--accent-soft); color: var(--accent-dark);
+    font-weight: 600; font-size: .85rem;
+    padding: .25rem .8rem; border-radius: 999px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent); color: #fff;
+    font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .8rem;
+    padding: .85rem 1.6rem; border-radius: 6px;
+    transition: background .2s, transform .2s;
+  }
+  .btn:hover { background: var(--accent-dark); color: #fff; transform: translateY(-2px); }
+  .btn.outline { background: transparent; color: var(--accent-dark); box-shadow: inset 0 0 0 2px var(--accent); }
+  .btn.outline:hover { background: var(--accent); color: #fff; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+  /* The circular profile photo */
+  .photo {
+    position: relative;
+    width: 17rem; height: 17rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent-soft), #d6e0ee);
+    border: 6px solid #fff;
+    box-shadow: 0 0 0 2px var(--accent), 0 14px 30px rgba(61, 68, 73, .15);
+    justify-self: center;
+  }
+  .photo .placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 5rem; gap: .4rem;
+  }
+  .photo .placeholder span { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------------- PROJECT CARDS ---------------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* 3 columns on big screens */
+    gap: 1.8rem;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(61, 68, 73, .12); }
+  .card-image {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #dfe8f3, #b9c9de);
+  }
+  .card-image .placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #fff; font-size: 2.6rem; gap: .3rem;
+  }
+  .card-image .placeholder span { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+  .card-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .card-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .card-body h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+  .card-body p { margin: 0 0 1.2rem; color: #566068; font-size: .98rem; flex: 1; }
+  .card-body .btn { align-self: flex-start; padding: .65rem 1.2rem; }
+
+  /* ---------------- CONTACT ---------------- */
+  .contact-list { list-style: none; margin: 0; padding: 0; max-width: 34rem; }
+  .contact-list li {
+    display: flex; align-items: center; gap: 1.1rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--line);
+  }
+  .contact-list .ico {
+    flex: none;
+    width: 2.8rem; height: 2.8rem; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent-dark);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+  .contact-list small { display: block; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; color: var(--muted); font-weight: 700; }
+  .contact-list a, .contact-list span.val { font-weight: 600; font-size: 1.05rem; word-break: break-word; }
+
+  /* ---------------- FOOTER ---------------- */
+  footer {
+    margin-top: 4.5rem; padding: 1.8rem 0 2.4rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted); font-size: .9rem;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem;
+  }
+
+  /* ---------------- RESPONSIVE (phones and tablets) ---------------- */
+  @media (max-width: 1100px) {
+    /* Sidebar hides and opens with the menu button */
+    .sidebar { transform: translateX(-100%); box-shadow: none; }
+    .sidebar.open { transform: translateX(0); box-shadow: 0 0 40px rgba(0,0,0,.25); }
+    .close-menu { display: block; }
+    .main { margin-left: 0; }
+    .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .backdrop {
+      position: fixed; inset: 0; background: rgba(15, 23, 30, .45); z-index: 20;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .backdrop.show { opacity: 1; pointer-events: auto; }
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }   /* 2 columns on tablets */
+    .banner { grid-template-columns: 1fr; gap: 2rem; }
+    .photo { order: -1; width: 13rem; height: 13rem; justify-self: start; }  /* photo moves above bio */
+    .banner h1 { font-size: 2.4rem; }
+  }
+  @media (max-width: 600px) {
+    .inner { padding: 0 1.3rem; }
+    .grid { grid-template-columns: 1fr; }              /* 1 column on phones */
+    .header-right .icons { display: none; }
+    .banner h1 { font-size: 2.1rem; }
+    section { padding-top: 3rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Dark overlay shown behind the menu on phones (leave as is) -->
+<div class="backdrop" id="backdrop"></div>
+
+<!-- ==================================================================
+     LEFT SIDEBAR  (name, job title, menu links, social icons)
+     ================================================================== -->
+<aside class="sidebar" id="sidebar" aria-label="Site menu">
+  <button class="close-menu" id="closeMenu" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+
+  <!-- EDIT-ME (optional): your name and job title appear here. Change the words between the tags. -->
+  <h2 class="brand-name">Yamini</h2>
+  <p class="brand-title">Aspiring Data Analyst</p>
+
+  <!-- MENU LINKS. The part after # (like #projects) must match an id="..." further down the page.
+       To rename a menu item, change only the visible word, e.g. >Projects< to >Work<. -->
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==============================================================
+       EDIT-ME 7: SOCIAL ICONS (sidebar copy)
+       Each icon is one line. Change the web address inside href="..."
+         - LinkedIn: already set to your profile.
+         - Email: "mailto:" followed by your email address.
+         - GitHub: replace https://github.com/ with your own GitHub page,
+           or delete the whole <li>...</li> line if you don't use GitHub.
+       The same icons also appear in the top header bar: change them there too
+       (search for "EDIT-ME 7" again).
+       ============================================================== -->
+  <div class="sidebar-social">
+    <p>Find me online</p>
+    <ul class="icons">
+      <li><a href="https://www.linkedin.com/in/mohammed-hakeem1/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+      <li><a href="mailto:yaminiashokkumar5@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a></li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+    </ul>
+  </div>
+</aside>
+
+<!-- ==================================================================
+     MAIN CONTENT (everything to the right of the sidebar)
+     ================================================================== -->
+<div class="main">
+  <div class="inner">
+
+    <!-- ============================================================
+         TOP HEADER BAR  ("Portfolio" logo + social icons)
+         ============================================================ -->
+    <header class="top-header">
+      <a href="#about" class="logo" aria-label="Portfolio home">
+        <span class="mark"><i class="fa-solid fa-chart-column"></i></span>
+        <!-- EDIT-ME (optional): change the word "Portfolio" if you'd like a different logo text -->
+        Portfolio
+      </a>
+      <div class="header-right">
+        <!-- EDIT-ME 7: SOCIAL ICONS (header copy). Same rules as the sidebar copy above. -->
+        <ul class="icons">
+          <li><a href="https://www.linkedin.com/in/mohammed-hakeem1/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+          <li><a href="mailto:yaminiashokkumar5@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a></li>
+          <li><a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="sidebar"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </header>
+
+    <!-- ============================================================
+         BANNER / ABOUT  (bio on the left, round photo on the right)
+         ============================================================ -->
+    <section id="about" class="banner">
+      <div>
+        <p class="eyebrow">Hello, I'm Yamini</p>
+        <h1>Aspiring Data Analyst</h1>
+
+        <!-- EDIT-ME (optional): YOUR BIO. Replace the sentences between the <p> tags with your own words. -->
+        <p class="bio">Professional with 2.5+ years of experience in customer support operations, including CRM management, SLA tracking, and CSI reporting. Skilled in Excel, SQL, and Power BI, with dashboard projects in finance and supply chain. Seeking a Data Analyst, CRM Analyst, or Reporting role where I can use my customer operations background and data skills to deliver clear, actionable insights.</p>
+
+        <!-- EDIT-ME (optional): SKILL TAGS. To add a skill, copy one <li>...</li> line and change the word.
+             To remove a skill, delete its whole line. -->
+        <ul class="chips" aria-label="Key skills">
+          <li>Excel</li>
+          <li>SQL</li>
+          <li>Power BI</li>
+          <li>CRM Management</li>
+          <li>SLA Tracking</li>
+          <li>CSI Reporting</li>
+        </ul>
+
+        <div class="btn-row">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="#contact" class="btn outline">Get in Touch</a>
+        </div>
+      </div>
+
+      <!-- ==========================================================
+           EDIT-ME 1: YOUR PROFILE PHOTO
+           Until you add a photo, a grey-blue circle with a person icon shows.
+           To use your own photo:
+             1. Pick a clear, square-ish photo (a head-and-shoulders picture works best).
+             2. Save it inside the "images" folder with the exact name:  profile.jpg
+                (If your photo is a .png, either rename it to profile.jpg or change
+                 "images/profile.jpg" below to "images/profile.png".)
+             3. Save this file and refresh the browser. The photo appears automatically
+                and fills the circle. Nothing else to change!
+           Tip: also fill in the alt="..." text. It describes the photo for people using screen readers.
+           ========================================================== -->
+      <div class="photo">
+        <div class="placeholder" aria-hidden="true"><i class="fa-solid fa-user"></i><span>Your photo</span></div>
+        <img src="images/profile.jpg" alt="Portrait of Yamini" onerror="this.style.display='none'">
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS SECTION
+         ============================================================ -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="grid">
+
+        <!-- ========================================================
+             EDIT-ME 6: HOW TO ADD MORE PROJECTS  (a simple copy-and-paste)
+               1. Find the line below that says  "START OF PROJECT CARD".
+               2. Select everything from that line down to the line that says
+                  "END OF PROJECT CARD" (copy it with Ctrl+C / Cmd+C).
+               3. Paste it (Ctrl+V / Cmd+V) on a new line right AFTER the
+                  "END OF PROJECT CARD" line, but still before the closing
+                  "</div>" of the grid (the line that says "END OF PROJECT GRID").
+               4. In the pasted copy, change the image, title, description and
+                  link (EDIT-ME 2 to 5 inside the card).
+             Cards line up in rows of three automatically (two on tablets, one on
+             phones). Add as many as you like. To remove a project, delete its
+             whole card (everything from START to END).
+             ======================================================== -->
+
+        <!-- ========== START OF PROJECT CARD ========== -->
+        <article class="card">
+
+          <!-- EDIT-ME 2: PROJECT IMAGE
+               Until you add a picture, a blue placeholder shows.
+               To use your own (for example a screenshot of your dashboard):
+                 1. Save the picture in the "images" folder, e.g.  images/project-1.jpg
+                 2. Make sure the name below after src= matches it exactly (capital
+                    letters and spaces matter; avoid spaces, use dashes instead).
+                 3. For each new project use a different file name:
+                    project-2.jpg, project-3.jpg ...
+               Best size: roughly 1200 x 750 pixels (wide rectangle). -->
+          <div class="card-image">
+            <div class="placeholder" aria-hidden="true"><i class="fa-solid fa-chart-pie"></i><span>Project image</span></div>
+            <img src="images/project-1.jpg" alt="Screenshot of the project dashboard" onerror="this.style.display='none'">
+          </div>
+
+          <div class="card-body">
+            <!-- EDIT-ME 3: PROJECT TITLE. Replace the words between the <h3> tags. -->
+            <h3>Project Title Goes Here</h3>
+
+            <!-- EDIT-ME 4: PROJECT DESCRIPTION.
+                 Write 2 or 3 short sentences: what the project is, which tools you used
+                 (Excel, SQL, Power BI...), and what insight or result it gave. -->
+            <p>This is a demo card. Replace this text with a short description of your project: the business problem, the tools you used, and the key insight you found.</p>
+
+            <!-- EDIT-ME 5: PROJECT LINK
+                 The "View Project" button goes to whatever is inside href="...".
+                 Replace the # with a full web address, for example:
+                   href="https://github.com/your-name/your-project"
+                   href="https://app.powerbi.com/view?r=..."   (a published Power BI report)
+                 Keep target="_blank" so the project opens in a new tab.
+                 If you leave the # the button does nothing yet. That's fine while you're building. -->
+            <a href="#" class="btn" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </article>
+        <!-- ========== END OF PROJECT CARD ========== -->
+
+        <!-- Paste your copied cards here (see EDIT-ME 6) -->
+
+      </div>
+      <!-- END OF PROJECT GRID -->
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+         ============================================================ -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+
+      <!-- EDIT-ME (optional): to change your email, LinkedIn or location, edit the text and the
+           href="..." address in the lines below. (A "mailto:" link opens the visitor's email app.) -->
+      <ul class="contact-list">
+        <li>
+          <span class="ico"><i class="fa-solid fa-envelope"></i></span>
+          <div><small>Email</small><a href="mailto:yaminiashokkumar5@gmail.com">yaminiashokkumar5@gmail.com</a></div>
+        </li>
+        <li>
+          <span class="ico"><i class="fa-brands fa-linkedin-in"></i></span>
+          <div><small>LinkedIn</small><a href="https://www.linkedin.com/in/mohammed-hakeem1/" target="_blank" rel="noopener">linkedin.com/in/mohammed-hakeem1</a></div>
+        </li>
+        <li>
+          <span class="ico"><i class="fa-solid fa-location-dot"></i></span>
+          <div><small>Location</small><span class="val">Chennai, Tamilnadu</span></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer>
+      <!-- The year updates itself automatically. Change "Yamini" if needed. -->
+      <span>&copy; <span id="year">2026</span> Yamini. All rights reserved.</span>
+      <span>Aspiring Data Analyst &middot; Chennai</span>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  /* ==================================================================
+     SCRIPT (small helpers). You do not need to edit anything below.
+       - opens/closes the menu on phones
+       - highlights the current section in the menu
+       - keeps the footer year up to date
+     ================================================================== */
+  (function () {
+    var sidebar  = document.getElementById('sidebar');
+    var backdrop = document.getElementById('backdrop');
+
+    function openMenu()  { sidebar.classList.add('open');    backdrop.classList.add('show'); }
+    function closeMenu() { sidebar.classList.remove('open'); backdrop.classList.remove('show'); }
+
+    document.getElementById('menuToggle').addEventListener('click', openMenu);
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+    var links = document.querySelectorAll('.sidebar nav a');
+    links.forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+    // Highlight the menu link of the section currently on screen
+    if ('IntersectionObserver' in window) {
+      var map = {};
+      links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && map[en.target.id]) {
+            links.forEach(function (l) { l.classList.remove('active'); });
+            map[en.target.id].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
